@@ -148,9 +148,8 @@
         <p class="section-description">8课学习历程记录</p>
       </div>
       <div class="courses-grid">
-        <div v-for="course in courses" :key="course.id" class="course-card glass"
-          @mousemove="(e) => updateMousePos(e, $el.currentTarget)">
-          <div class="course-number">{{ course.number }}</div>
+        <a v-for="course in courses" :key="course.id" :href="course.url" class="course-card glass"
+          target="_blank" rel="noopener noreferrer" @mousemove="(e) => updateMousePos(e, $el.currentTarget)">
           <h3 class="course-title">{{ course.title }}</h3>
           <div class="course-footer">
             <span class="course-hint">点击查看笔记</span>
@@ -159,8 +158,7 @@
               <path d="M21 5v14" />
             </svg>
           </div>
-          <a :href="course.url" class="course-link" target="_blank" rel="noopener noreferrer"></a>
-        </div>
+        </a>
       </div>
     </section>
 
@@ -323,81 +321,86 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   z-index: 0;
 }
 
-/* 主光圈 - 暖色（金色） */
+/* 主光圈 - 暖色（金色）- 右上 */
 .bg-glow.glow-primary {
-  position: fixed;
-  width: 600px;
-  height: 600px;
-  top: -200px;
-  right: -100px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, rgba(245, 158, 11, 0.15) 40%, transparent 70%);
-  filter: blur(60px);
-  pointer-events: none;
-  z-index: 0;
-  animation: pulse-glow 8s ease-in-out infinite;
-}
-
-/* 次光圈 - 冷色（紫色） */
-.bg-glow.glow-secondary {
   position: fixed;
   width: 500px;
   height: 500px;
-  bottom: -150px;
-  left: -100px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, rgba(99, 102, 241, 0.12) 40%, transparent 70%);
-  filter: blur(70px);
+  top: 10%;
+  right: 10%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(245, 158, 11, 0.08) 40%, transparent 70%);
+  filter: blur(100px);
   pointer-events: none;
   z-index: 0;
-  animation: pulse-glow 10s ease-in-out infinite reverse;
+  animation: pulse-glow-primary 12s ease-in-out infinite;
 }
 
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
+/* 次光圈 - 冷色（紫色）- 左下 */
+.bg-glow.glow-secondary {
+  position: fixed;
+  width: 450px;
+  height: 450px;
+  bottom: 10%;
+  left: 10%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(99, 102, 241, 0.06) 40%, transparent 70%);
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-glow-secondary 14s ease-in-out infinite reverse;
+}
+
+@keyframes pulse-glow-primary {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes pulse-glow-secondary {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
 }
 
 .bg-orb {
   position: fixed;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(100px);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .orb-1 {
-  width: 350px;
-  height: 350px;
-  background: rgba(139, 92, 246, 0.25);
-  top: 15%;
-  left: 8%;
+  width: 400px;
+  height: 400px;
+  background: rgba(139, 92, 246, 0.3);
+  top: 25%;
+  left: 35%;
   animation: float 18s ease-in-out infinite;
 }
 
 .orb-2 {
-  width: 280px;
-  height: 280px;
-  background: rgba(245, 158, 11, 0.2);
-  top: 45%;
-  right: 12%;
+  width: 350px;
+  height: 350px;
+  background: rgba(245, 158, 11, 0.25);
+  top: 40%;
+  right: 30%;
   animation: float 22s ease-in-out infinite reverse;
 }
 
 .orb-3 {
-  width: 320px;
-  height: 320px;
-  background: rgba(99, 102, 241, 0.18);
-  bottom: 15%;
-  left: 25%;
+  width: 380px;
+  height: 380px;
+  background: rgba(99, 102, 241, 0.22);
+  bottom: 25%;
+  left: 30%;
   animation: float 20s ease-in-out infinite;
 }
 
 .orb-4 {
-  width: 250px;
-  height: 250px;
-  background: rgba(236, 72, 153, 0.15);
-  top: 60%;
-  left: 45%;
+  width: 300px;
+  height: 300px;
+  background: rgba(236, 72, 153, 0.18);
+  top: 50%;
+  right: 35%;
   animation: float 25s ease-in-out infinite reverse;
 }
 
@@ -443,13 +446,16 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   right: 16px;
   z-index: 100;
   border-radius: 100px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
+  padding: 10px 20px;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -457,7 +463,7 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .nav-link {
@@ -467,12 +473,29 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   color: var(--color-text-secondary);
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 100px;
 }
 
 .nav-link:hover {
   color: var(--color-text-primary);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.nav-link:hover::before {
+  opacity: 1;
 }
 
 .github-link {
@@ -480,23 +503,51 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 100px;
   text-decoration: none;
   color: var(--color-text-primary);
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.github-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .github-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.github-link:hover::before {
+  opacity: 1;
 }
 
 .github-link svg {
   width: 18px;
   height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.github-link:hover svg {
+  transform: rotate(5deg) scale(1.1);
 }
 
 /* ===== Hero Section ===== */
@@ -603,27 +654,77 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   text-decoration: none;
   cursor: pointer;
   border: none;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-primary {
   background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
   color: #0F172A;
+  box-shadow:
+    0 4px 15px rgba(245, 158, 11, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.35);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 8px 30px rgba(245, 158, 11, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:active {
+  transform: translateY(-1px) scale(0.98);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--color-text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary:hover::before {
+  opacity: 1;
+}
+
+.btn-secondary:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .btn-primary svg,
@@ -675,14 +776,38 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   flex-direction: column;
   text-decoration: none;
   color: var(--color-text-primary);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   overflow: hidden;
   aspect-ratio: 1;
+  position: relative;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.project-card-large::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .project-card-large:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 12px 40px rgba(245, 158, 11, 0.2),
+    0 0 0 1px rgba(245, 158, 11, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.project-card-large:hover::before {
+  opacity: 1;
 }
 
 .project-image {
@@ -787,13 +912,37 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   flex-direction: column;
   text-decoration: none;
   color: var(--color-text-primary);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.project-card-small::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .project-card-small:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 10px 35px rgba(245, 158, 11, 0.2),
+    0 0 0 1px rgba(245, 158, 11, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.project-card-small:hover::before {
+  opacity: 1;
 }
 
 .project-card-small .project-image {
@@ -830,13 +979,20 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
 
 .course-card {
   position: relative;
-  padding: 28px 20px;
+  padding: 20px 24px;
   text-decoration: none;
   color: var(--color-text-primary);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   overflow: hidden;
-  aspect-ratio: 3/4;
+  aspect-ratio: 8/3.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .course-card::before {
@@ -854,7 +1010,7 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at var(--mouse-x, 50%) 0%, transparent 50%);
-  background: radial-gradient(circle at var(--mouse-x, var(--mouse-y)) 0%, rgba(255, 255, 255, 0.03) 100%);
+  background: radial-gradient(circle at var(--mouse-x, var(--mouse-y)) 0%, rgba(255, 255, 255, 0.05) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -867,39 +1023,18 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
 }
 
 .course-card:hover {
-  transform: translateY(-8px) scale(1.02);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 10px 35px rgba(245, 158, 11, 0.2),
+    0 0 0 1px rgba(245, 158, 11, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
   border-color: rgba(245, 158, 11, 0.5);
 }
 
-.course-link {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-}
-
-.course-number {
-  font-size: 42px;
-  font-weight: 700;
-  background: linear-gradient(135deg, #F59E0B 0%, #8B5CF6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  opacity: 0.3;
-  margin-bottom: 8px;
-  position: relative;
-  z-index: 1;
-  transition: all 0.4s ease;
-}
-
-.course-card:hover .course-number {
-  opacity: 0.5;
-  transform: scale(1.1);
-}
-
 .course-title {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-primary);
   position: relative;
   z-index: 1;
   transition: all 0.4s ease;
@@ -915,18 +1050,16 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   align-items: center;
   position: relative;
   z-index: 1;
-  opacity: 0;
-  transform: translateY(8px);
+  opacity: 0.8;
   transition: all 0.4s ease;
 }
 
 .course-card:hover .course-footer {
   opacity: 1;
-  transform: translateY(0);
 }
 
 .course-hint {
-  font-size: 12px;
+  font-size: 13px;
   color: #F59E0B;
   font-weight: 500;
 }
