@@ -2,9 +2,17 @@
   <div class="homepage">
     <!-- Background Effects -->
     <div class="bg-gradient"></div>
+    <!-- 主光圈 - 暖色 -->
+    <div class="bg-glow glow-primary"></div>
+    <!-- 次光圈 - 冷色 -->
+    <div class="bg-glow glow-secondary"></div>
+    <!-- 装饰光点 -->
     <div class="bg-orb orb-1"></div>
     <div class="bg-orb orb-2"></div>
     <div class="bg-orb orb-3"></div>
+    <div class="bg-orb orb-4"></div>
+    <!-- 网格背景 -->
+    <div class="bg-grid"></div>
 
     <!-- Navigation -->
     <nav class="navbar glass">
@@ -16,8 +24,9 @@
           <a href="#avatar" class="nav-link">数字分身</a>
         </div>
         <a href="https://github.com/215359721" target="_blank" rel="noopener noreferrer" class="github-link">
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
           </svg>
           <span>GitHub</span>
         </a>
@@ -27,42 +36,109 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
       <div class="hero-content">
-        <div class="hero-badge glass">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-          </svg>
-          <span>欢迎来到我的个人主页</span>
+        <!-- Left: Developer Info -->
+        <div class="hero-left">
+          <div class="developer-card">
+            <div class="developer-avatar">
+              <img :src="avatarUrl" alt="开发者头像" />
+            </div>
+            <div class="developer-info">
+              <div class="hero-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg>
+                <span>欢迎来到我的主页</span>
+              </div>
+              <h1 class="hero-title">
+                你好，我是 <span class="gradient-text">Ethan_Ma</span>
+              </h1>
+              <p class="hero-description">
+                {{ developerBio }}
+              </p>
+              <div class="hero-actions">
+                <a href="#projects" class="btn-primary">
+                  <span>查看项目</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+                <a href="#courses" class="btn-secondary">
+                  <span>课程总览</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                  </svg>
+                </a>
+                <a href="#avatar" class="btn-secondary">
+                  <span>与我对话</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <h1 class="hero-title">
-          你好，我是 <span class="gradient-text">开发者</span>
-        </h1>
-        <p class="hero-description">
-          热爱编程，专注于前端开发与用户体验设计。在这里记录我的学习历程和项目实战。
-        </p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn-primary">
-            <span>查看项目</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-          <a href="#avatar" class="btn-secondary">
-            <span>与我对话</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-          </a>
+
+        <!-- Right: Project Carousel -->
+        <div class="hero-right">
+          <ProjectCarousel :projects="allProjects" />
         </div>
       </div>
     </section>
 
-    <!-- Projects Banner -->
+    <!-- Projects Grid Section -->
     <section id="projects" class="projects-section">
       <div class="section-header">
         <h2 class="section-title">项目实战</h2>
-        <p class="section-description">滚动查看我的项目作品</p>
+        <p class="section-description">点击卡片查看项目详情</p>
       </div>
-      <ProjectCarousel :projects="projects" />
+      <div class="projects-layout">
+        <!-- Left: FlashLog (Large) -->
+        <a :href="flashLogProject.url" class="project-card-large glass" target="_blank" rel="noopener noreferrer">
+          <div class="project-image">
+            <img :src="flashLogProject.image" :alt="flashLogProject.title" />
+            <div class="project-overlay">
+              <a :href="flashLogProject.githubUrl" target="_blank" rel="noopener noreferrer" class="github-btn"
+                @click.stop>
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                </svg>
+                源码
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">{{ flashLogProject.title }}</h3>
+            <p class="project-subtitle">{{ flashLogProject.titleEn }}</p>
+            <p class="project-description">{{ flashLogProject.description }}</p>
+          </div>
+        </a>
+
+        <!-- Right: 2x2 Small Projects Grid -->
+        <div class="projects-grid-small">
+          <a v-for="project in smallProjects" :key="project.id" :href="project.url" class="project-card-small glass"
+            target="_blank" rel="noopener noreferrer">
+            <div class="project-image">
+              <img :src="project.image" :alt="project.title" />
+              <div class="project-overlay">
+                <a :href="project.githubUrl" target="_blank" rel="noopener noreferrer" class="github-btn" @click.stop>
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                  源码
+                </a>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">{{ project.title }}</h3>
+              <p class="project-subtitle">{{ project.titleEn }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Courses Section -->
@@ -72,22 +148,19 @@
         <p class="section-description">8课学习历程记录</p>
       </div>
       <div class="courses-grid">
-        <a
-          v-for="course in courses"
-          :key="course.id"
-          :href="course.url"
-          class="course-card glass"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <div v-for="course in courses" :key="course.id" class="course-card glass"
+          @mousemove="(e) => updateMousePos(e, $el.currentTarget)">
           <div class="course-number">{{ course.number }}</div>
           <h3 class="course-title">{{ course.title }}</h3>
-          <div class="course-arrow">
+          <div class="course-footer">
+            <span class="course-hint">点击查看笔记</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
+              <path d="M9 18l6-6-6-6" />
+              <path d="M21 5v14" />
             </svg>
           </div>
-        </a>
+          <a :href="course.url" class="course-link" target="_blank" rel="noopener noreferrer"></a>
+        </div>
       </div>
     </section>
 
@@ -109,8 +182,9 @@
         </div>
         <div class="footer-links">
           <a href="https://github.com/215359721" target="_blank" rel="noopener noreferrer" class="footer-link">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
             </svg>
             GitHub
           </a>
@@ -124,7 +198,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import ProjectCarousel from './ProjectCarousel.vue'
 import DigitalAvatar from './DigitalAvatar.vue'
 
@@ -140,8 +214,26 @@ interface Project {
   title: string
   titleEn: string
   url: string
-  icon: string
+  githubUrl: string
+  image: string
   description: string
+}
+
+// 个人简介
+const developerBio = ref('资深前端技术经理，拥有8年以上大型互联网项目实战经验，主导过多个亿级用户产品的前端架构设计与团队建设。擅长高性能前端体系搭建、工程化落地及跨端技术整合，兼具技术深度与管理视野。始终以用户体验为核心，用代码驱动产品进化，带领团队高效交付、持续创新，在复杂业务场景中不断突破技术边界。')
+
+// 个人头像
+const avatarUrl = ref('https://s1-imfile.feishucdn.com/static-resource/v1/v3_00iv_48fbdee8-2731-4c02-b392-349db38af10g~?image_size=noop&cut_type=&quality=&format=image')
+
+// 鼠标跟踪效果
+const mousePos = ref({ x: 0, y: 0 })
+
+const updateMousePos = (event: MouseEvent, cardRef: HTMLElement) => {
+  const rect = cardRef.getBoundingClientRect()
+  const x = ((event.clientX - rect.left) / rect.width) * 100
+  const y = ((event.clientY - rect.top) / rect.height) * 100
+  cardRef.style.setProperty('--mouse-x', `${x}%`)
+  cardRef.style.setProperty('--mouse-y', `${y}%`)
 }
 
 const courses = ref<Course[]>([
@@ -155,13 +247,14 @@ const courses = ref<Course[]>([
   { id: 8, number: '08', title: '第8课', url: 'https://my.feishu.cn/wiki/QYAswAbf1iwLwXkBmUDcp3E8nne?from=from_copylink' }
 ])
 
-const projects = ref<Project[]>([
+const allProjects = ref<Project[]>([
   {
     id: 1,
     title: '成语卡片',
     titleEn: 'Idiom Card',
     url: 'https://cy-card.vercel.app',
-    icon: 'card',
+    githubUrl: 'https://github.com/215359721/cyCard',
+    image: new URL('../assets/UI/card.png', import.meta.url).href,
     description: '精美的成语学习卡片应用，帮助用户轻松学习中文成语'
   },
   {
@@ -169,7 +262,8 @@ const projects = ref<Project[]>([
     title: '个人主页',
     titleEn: 'Personal Page',
     url: 'https://personal-page-tawny-three.vercel.app',
-    icon: 'user',
+    githubUrl: 'https://github.com/215359721/personalPage',
+    image: new URL('../assets/UI/page.png', import.meta.url).href,
     description: '极简风格的个人展示页面，展现个人信息与作品'
   },
   {
@@ -177,7 +271,8 @@ const projects = ref<Project[]>([
     title: '红酒网站',
     titleEn: 'Wine Website',
     url: 'https://app-8bkqt0y8eb5t.appmiaoda.com/',
-    icon: 'wine',
+    githubUrl: 'https://app-8bkqt0y8eb5t.appmiaoda.com/',
+    image: new URL('../assets/UI/wine.png', import.meta.url).href,
     description: '优雅的红酒展示网站，呈现品牌魅力与产品特色'
   },
   {
@@ -185,7 +280,8 @@ const projects = ref<Project[]>([
     title: '知匣KnowBox',
     titleEn: 'Knowledge Box',
     url: 'https://know-box.vercel.app/',
-    icon: 'box',
+    githubUrl: 'https://github.com/215359721/knowBox',
+    image: new URL('../assets/UI/box.png', import.meta.url).href,
     description: '知识管理工具，帮助你整理和分享所学知识'
   },
   {
@@ -193,10 +289,17 @@ const projects = ref<Project[]>([
     title: '闪记flashLog',
     titleEn: 'Flash Notes',
     url: 'https://flash-log.vercel.app/',
-    icon: 'zap',
+    githubUrl: 'https://github.com/215359721/flashLog',
+    image: new URL('../assets/UI/shanji.png', import.meta.url).href,
     description: '快速记录笔记的工具，捕捉灵感瞬间'
   }
 ])
+
+// 闪记项目（左侧大卡片）
+const flashLogProject = computed(() => allProjects.value.find(p => p.id === 5)!)
+
+// 其他4个项目（右侧小卡片）
+const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
 </script>
 
 <style scoped>
@@ -215,11 +318,42 @@ const projects = ref<Project[]>([
   left: 0;
   right: 0;
   bottom: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139, 92, 246, 0.15), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(245, 158, 11, 0.08), transparent);
+  background: #0F172A;
   pointer-events: none;
   z-index: 0;
+}
+
+/* 主光圈 - 暖色（金色） */
+.bg-glow.glow-primary {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, rgba(245, 158, 11, 0.15) 40%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+/* 次光圈 - 冷色（紫色） */
+.bg-glow.glow-secondary {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  bottom: -150px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, rgba(99, 102, 241, 0.12) 40%, transparent 70%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-glow 10s ease-in-out infinite reverse;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
 }
 
 .bg-orb {
@@ -228,34 +362,43 @@ const projects = ref<Project[]>([
   filter: blur(80px);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .orb-1 {
-  width: 400px;
-  height: 400px;
-  background: rgba(139, 92, 246, 0.2);
-  top: 10%;
-  left: 10%;
-  animation: float 20s ease-in-out infinite;
+  width: 350px;
+  height: 350px;
+  background: rgba(139, 92, 246, 0.25);
+  top: 15%;
+  left: 8%;
+  animation: float 18s ease-in-out infinite;
 }
 
 .orb-2 {
-  width: 300px;
-  height: 300px;
-  background: rgba(245, 158, 11, 0.15);
-  top: 50%;
-  right: 15%;
-  animation: float 25s ease-in-out infinite reverse;
+  width: 280px;
+  height: 280px;
+  background: rgba(245, 158, 11, 0.2);
+  top: 45%;
+  right: 12%;
+  animation: float 22s ease-in-out infinite reverse;
 }
 
 .orb-3 {
-  width: 350px;
-  height: 350px;
-  background: rgba(99, 102, 241, 0.15);
-  bottom: 10%;
-  left: 30%;
-  animation: float 22s ease-in-out infinite;
+  width: 320px;
+  height: 320px;
+  background: rgba(99, 102, 241, 0.18);
+  bottom: 15%;
+  left: 25%;
+  animation: float 20s ease-in-out infinite;
+}
+
+.orb-4 {
+  width: 250px;
+  height: 250px;
+  background: rgba(236, 72, 153, 0.15);
+  top: 60%;
+  left: 45%;
+  animation: float 25s ease-in-out infinite reverse;
 }
 
 @keyframes float {
@@ -264,13 +407,32 @@ const projects = ref<Project[]>([
   66% { transform: translate(-20px, 20px) scale(0.95); }
 }
 
+/* 网格背景 */
+.bg-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+}
+
 /* ===== Glass Effect ===== */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 /* ===== Navigation ===== */
@@ -288,7 +450,7 @@ const projects = ref<Project[]>([
   justify-content: space-between;
   align-items: center;
   padding: 12px 24px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -346,14 +508,43 @@ const projects = ref<Project[]>([
   align-items: center;
   justify-content: center;
   padding: 120px 24px 80px;
-  text-align: center;
 }
 
 .hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1400px;
+  width: 100%;
+}
+
+/* Developer Card */
+.developer-card {
+  display: flex;
+  gap: 32px;
+  padding: 0;
+}
+
+.developer-avatar {
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #F59E0B 0%, #8B5CF6 100%);
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.3);
+}
+
+.developer-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.developer-info {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  max-width: 700px;
+  gap: 20px;
 }
 
 .hero-badge {
@@ -362,22 +553,23 @@ const projects = ref<Project[]>([
   gap: 8px;
   padding: 8px 16px;
   width: fit-content;
-  margin: 0 auto;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--color-text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .hero-badge svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   color: #F59E0B;
 }
 
 .hero-title {
-  font-size: clamp(36px, 6vw, 56px);
+  font-size: clamp(28px, 3vw, 40px);
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .gradient-text {
@@ -388,17 +580,14 @@ const projects = ref<Project[]>([
 }
 
 .hero-description {
-  font-size: 18px;
+  font-size: 15px;
   color: var(--color-text-secondary);
-  max-width: 500px;
-  margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.8;
 }
 
 .hero-actions {
   display: flex;
   gap: 12px;
-  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -407,9 +596,9 @@ const projects = ref<Project[]>([
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 28px;
+  padding: 12px 24px;
   border-radius: 100px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
@@ -439,8 +628,13 @@ const projects = ref<Project[]>([
 
 .btn-primary svg,
 .btn-secondary svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
+}
+
+.hero-right {
+  display: flex;
+  align-items: center;
 }
 
 /* ===== Section Headers ===== */
@@ -464,27 +658,133 @@ const projects = ref<Project[]>([
 .projects-section {
   position: relative;
   z-index: 1;
-  padding: 80px 24px;
+  padding: 60px 24px;
 }
 
-/* ===== Courses Section ===== */
-.courses-section {
-  position: relative;
-  z-index: 1;
-  padding: 80px 24px;
-}
-
-.courses-grid {
+.projects-layout {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.course-card {
+/* Left Large Card */
+.project-card-large {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.project-card-large:hover {
+  transform: translateY(-4px);
+}
+
+.project-image {
   position: relative;
-  padding: 32px 24px;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+}
+
+.project-card-large .project-image {
+  aspect-ratio: 1;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-card-large:hover .project-image img,
+.project-card-small:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card-large:hover .project-overlay,
+.project-card-small:hover .project-overlay {
+  opacity: 1;
+}
+
+.github-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 100px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.github-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.github-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.project-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.project-title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.project-subtitle {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.project-description {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* Right Small Grid */
+.projects-grid-small {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.project-card-small {
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: var(--color-text-primary);
   transition: all 0.3s ease;
@@ -492,29 +792,93 @@ const projects = ref<Project[]>([
   overflow: hidden;
 }
 
+.project-card-small:hover {
+  transform: translateY(-4px);
+}
+
+.project-card-small .project-image {
+  aspect-ratio: 16/10;
+}
+
+.project-card-small .project-content {
+  padding: 16px;
+  gap: 6px;
+}
+
+.project-card-small .project-title {
+  font-size: 16px;
+}
+
+.project-card-small .project-subtitle {
+  font-size: 11px;
+}
+
+/* ===== Courses Section ===== */
+.courses-section {
+  position: relative;
+  z-index: 1;
+  padding: 60px 24px;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.course-card {
+  position: relative;
+  padding: 28px 20px;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+}
+
 .course-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  inset: 0;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.course-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) 0%, transparent 50%);
+  background: radial-gradient(circle at var(--mouse-x, var(--mouse-y)) 0%, rgba(255, 255, 255, 0.03) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.course-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(245, 158, 11, 0.3);
-}
-
-.course-card:hover::before {
+.course-card:hover::before,
+.course-card:hover::after {
   opacity: 1;
 }
 
+.course-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.course-link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
 .course-number {
-  font-size: 48px;
+  font-size: 42px;
   font-weight: 700;
   background: linear-gradient(135deg, #F59E0B 0%, #8B5CF6 100%);
   -webkit-background-clip: text;
@@ -524,37 +888,60 @@ const projects = ref<Project[]>([
   margin-bottom: 8px;
   position: relative;
   z-index: 1;
+  transition: all 0.4s ease;
+}
+
+.course-card:hover .course-number {
+  opacity: 0.5;
+  transform: scale(1.1);
 }
 
 .course-title {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   position: relative;
   z-index: 1;
+  transition: all 0.4s ease;
 }
 
-.course-arrow {
-  width: 24px;
-  height: 24px;
-  color: #F59E0B;
+.course-card:hover .course-title {
+  transform: translateX(4px);
+}
+
+.course-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
   opacity: 0;
-  transform: translateX(-8px);
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
+  transform: translateY(8px);
+  transition: all 0.4s ease;
 }
 
-.course-card:hover .course-arrow {
+.course-card:hover .course-footer {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
+}
+
+.course-hint {
+  font-size: 12px;
+  color: #F59E0B;
+  font-weight: 500;
+}
+
+.course-footer svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-muted);
 }
 
 /* ===== Avatar Section ===== */
 .avatar-section {
   position: relative;
   z-index: 1;
-  padding: 80px 24px;
+  padding: 60px 24px;
 }
 
 /* ===== Footer ===== */
@@ -635,8 +1022,28 @@ const projects = ref<Project[]>([
 
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .developer-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-description {
+    text-align: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
   .courses-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
   }
 }
 
@@ -652,6 +1059,14 @@ const projects = ref<Project[]>([
   .nav-container {
     padding: 0;
     justify-content: flex-end;
+  }
+
+  .projects-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid-small {
+    grid-template-columns: 1fr 1fr;
   }
 
   .courses-grid {
