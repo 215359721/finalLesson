@@ -40,12 +40,6 @@ export function useChat() {
   // 初始化时加载
   loadFromStorage()
 
-  // 获取当前时间
-  const getCurrentTime = () => {
-    const now = new Date()
-    return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`
-  }
-
   // 发送消息
   const sendMessage = async (text: string) => {
     if (!text.trim() || isTyping.value) return

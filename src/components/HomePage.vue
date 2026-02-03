@@ -245,7 +245,7 @@
       <div class="courses-grid">
         <a v-for="(course, index) in courses" :key="course.id" :href="course.url"
           class="course-card glass animate-on-scroll" target="_blank" rel="noopener noreferrer"
-          :ref="(el: any) => setCourseRef(el, index)" @mousemove="(e) => updateMousePos(e, $el.currentTarget)">
+          :ref="(el: any) => setCourseRef(el, index)" @mousemove="(e) => updateCardMousePos(e, $el.currentTarget)">
           <h3 class="course-title">{{ course.title }}</h3>
           <div class="course-footer">
             <span class="course-hint">点击查看笔记</span>
@@ -532,16 +532,6 @@ const achievements = ref([
 ])
 
 // 鼠标跟踪效果
-const mousePos = ref({ x: 0, y: 0 })
-
-const updateMousePos = (event: MouseEvent, cardRef: HTMLElement) => {
-  const rect = cardRef.getBoundingClientRect()
-  const x = ((event.clientX - rect.left) / rect.width) * 100
-  const y = ((event.clientY - rect.top) / rect.height) * 100
-  cardRef.style.setProperty('--mouse-x', `${x}%`)
-  cardRef.style.setProperty('--mouse-y', `${y}%`)
-}
-
 const updateCardMousePos = (event: MouseEvent, cardRef: HTMLElement) => {
   const rect = cardRef.getBoundingClientRect()
   const x = ((event.clientX - rect.left) / rect.width) * 100
