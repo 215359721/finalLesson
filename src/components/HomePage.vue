@@ -451,6 +451,11 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
+/* 移动端菜单下拉（默认隐藏） */
+.mobile-menu {
+  display: none;
+}
+
 .nav-container {
   display: flex;
   justify-content: space-between;
@@ -548,6 +553,12 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
 
 .github-link:hover svg {
   transform: rotate(5deg) scale(1.1);
+}
+
+/* 移动端菜单按钮（桌面端隐藏） */
+.mobile-menu-btn,
+.mobile-menu {
+  display: none;
 }
 
 /* ===== Hero Section ===== */
@@ -1166,32 +1177,76 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
     text-align: center;
   }
 
+  .developer-info {
+    align-items: center;
+  }
+
+  .hero-badge {
+    width: 100%;
+    justify-content: center;
+  }
+
   .hero-description {
     text-align: center;
   }
 
   .hero-actions {
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .courses-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
-}
 
-@media (max-width: 768px) {
-  .nav-menu {
+  /* 平板端也隐藏移动端菜单按钮 */
+  .mobile-menu-btn {
     display: none;
   }
 
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
   .navbar {
-    padding: 12px 16px;
+    padding: 10px 12px;
+    border-radius: 16px;
   }
 
   .nav-container {
-    padding: 0;
-    justify-content: flex-end;
+    padding: 6px 8px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .nav-link {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .github-link {
+    display: flex;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .github-link span {
+    display: none;
+  }
+
+  .github-link svg {
+    width: 16px;
+    height: 16px;
   }
 
   .projects-layout {
@@ -1210,6 +1265,26 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
     flex-direction: column;
     gap: 24px;
     text-align: center;
+  }
+
+  /* 移动端按钮保持一行 */
+  .hero-actions {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 10px 16px;
+    font-size: 13px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .btn-primary svg,
+  .btn-secondary svg {
+    width: 14px;
+    height: 14px;
   }
 }
 </style>
