@@ -2703,16 +2703,22 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
     font-size: 11px;
   }
 
+  /* Data & Tech Section - Tablet */
+  .data-tech-section {
+    padding: 16px 20px 24px;
+  }
+
   .data-tech-row {
     flex-wrap: wrap;
     gap: 12px;
-    padding: 0;
   }
 
   .data-cards-row,
   .tech-cards-row {
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    gap: 10px;
+    flex: 1 1 calc(50% - 6px);
+    min-width: 0;
   }
 
   .data-card-unified,
@@ -2746,6 +2752,11 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
     padding: 3px 10px;
   }
 
+  .card-trend {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
   .achievements-grid {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
@@ -2774,6 +2785,11 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   }
 
   /* Footer tablet styles */
+  .footer {
+    padding: 50px 20px 32px;
+    margin: 32px 14px 14px;
+  }
+
   .footer-main {
     grid-template-columns: 1fr 1fr;
     gap: 32px;
@@ -2850,6 +2866,10 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
     padding: 80px 16px 16px;
   }
 
+  .hero-content {
+    height: 650px;
+  }
+
   .hero-stats {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -2877,51 +2897,9 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
     font-size: 11px;
   }
 
-  .data-tech-row {
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 0;
-  }
-
-  .data-cards-row,
-  .tech-cards-row {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-  }
-
-  .data-card-unified,
-  .tech-card-unified {
-    padding: 14px;
-  }
-
-  .card-icon,
-  .tech-card-icon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .card-icon svg,
-  .tech-card-icon svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .card-value {
-    font-size: 20px;
-  }
-
-  .card-label,
-  .tech-card-name {
-    font-size: 11px;
-  }
-
-  .tech-card-level {
-    font-size: 10px;
-    padding: 2px 8px;
-  }
-
-  .card-trend {
-    font-size: 11px;
+  /* Data & Tech Section - Mobile */
+  .data-tech-section {
+    display: none;
   }
 
   .achievements-grid {
@@ -2950,16 +2928,25 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
     font-size: 11px;
   }
 
-  /* Footer responsive styles */
+  /* Footer mobile styles */
+  .footer {
+    padding: 40px 16px 24px;
+    margin: 24px 12px 12px;
+  }
+
   .footer-main {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .footer-brand-section {
-    max-width: 100%;
-    grid-column: 1 / -1;
+    grid-column: 1;
     text-align: center;
+    max-width: 100%;
+  }
+
+  .footer-description {
+    font-size: 13px;
   }
 
   .footer-logo-wrapper {
@@ -2970,15 +2957,52 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
     justify-content: center;
   }
 
+  .footer-section-title {
+    font-size: 13px;
+  }
+
+  .footer-links-list {
+    gap: 8px;
+  }
+
+  .footer-link-item {
+    font-size: 13px;
+  }
+
+  .tech-stack {
+    justify-content: center;
+  }
+
+  .tech-icon {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+
+  .footer-contact-list {
+    gap: 12px;
+  }
+
+  .contact-item {
+    font-size: 13px;
+  }
+
   .footer-bottom {
     flex-direction: column;
     gap: 12px;
     text-align: center;
+    font-size: 12px;
   }
 
   .back-to-top {
-    bottom: 20px;
-    right: 20px;
+    bottom: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .back-to-top svg {
+    width: 18px;
+    height: 18px;
   }
 
   /* 移动端按钮保持一行 */
@@ -2999,36 +3023,6 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   .btn-secondary svg {
     width: 14px;
     height: 14px;
-  }
-
-  /* Footer mobile styles */
-  .footer-main {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  .footer-brand-section {
-    grid-column: 1;
-  }
-
-  .footer-description {
-    font-size: 12px;
-  }
-
-  .tech-stack {
-    justify-content: center;
-  }
-
-  .back-to-top {
-    bottom: 16px;
-    right: 16px;
-    width: 40px;
-    height: 40px;
-  }
-
-  .back-to-top svg {
-    width: 18px;
-    height: 18px;
   }
 }
 </style>
