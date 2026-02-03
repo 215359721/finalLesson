@@ -137,9 +137,10 @@
         <!-- Learning Data Cards - Left 4 cards -->
         <div class="data-cards-row">
           <div v-for="(dataCard, index) in learningDataCards" :key="dataCard.id" class="data-card-unified glass"
-            :style="{ '--card-gradient': dataCard.gradient, 'transition-delay': `${index * 0.05}s` }">
+            :style="{ '--card-color': dataCard.color, 'transition-delay': `${index * 0.05}s` }"
+            @mousemove="(e) => updateCardMousePos(e, $el.currentTarget)">
             <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg viewBox="0 0 1024 1024" fill="currentColor">
                 <path v-html="dataCard.icon" />
               </svg>
             </div>
@@ -163,7 +164,8 @@
         <!-- Tech Stack Cards - Right 4 cards -->
         <div class="tech-cards-row">
           <div v-for="(tech, index) in techStackDisplay" :key="tech.name" class="tech-card-unified glass"
-            :style="{ '--tech-color': tech.color, 'transition-delay': `${(index + 4) * 0.05}s` }">
+            :style="{ '--tech-color': tech.color, 'transition-delay': `${(index + 4) * 0.05}s` }"
+            @mousemove="(e) => updateCardMousePos(e, $el.currentTarget)">
             <div class="tech-card-icon">
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path v-html="tech.svgIcon" />
@@ -421,75 +423,75 @@ const developerBio = ref('资深项目经理，8年+大型互联网产品全周�
 // 个人头像
 const avatarUrl = ref('https://s1-imfile.feishucdn.com/static-resource/v1/v3_00iv_48fbdee8-2731-4c02-b392-349db38af10g~?image_size=noop&cut_type=&quality=&format=image')
 
-// Learning Data Cards
+// Learning Data Cards - Updated with SVG icons from files
 const learningDataCards = ref([
   {
     id: 1,
     label: '学习时长',
     value: '128h',
-    icon: 'M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z',
+    icon: 'M512 1023.999138A512.119804 512.119804 0 0 1 312.690892 40.258596a512.119804 512.119804 0 0 1 398.618216 943.481946A508.843407 508.843407 0 0 1 512 1023.999138z m0-911.780054c-220.430343 0-399.780486 179.350143-399.780486 399.780485s179.350143 399.780486 399.780486 399.780486 399.780486-179.350143 399.780486-399.780486-179.340123-399.780486-399.780486-399.780485z m178.578636 612.105003l-231.251468-164.811759h-3.937688l0.500978-316.618129 112.219084 0.180352-0.400783 255.87955 187.997024 133.991589z',
     trend: '+12%',
     trendClass: 'trend-up',
     progress: 85,
-    gradient: 'linear-gradient(135deg, #F59E0B, #FBBF24)'
+    color: '#F59E0B'
   },
   {
     id: 2,
     label: '笔记数量',
-    value: '256',
-    icon: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20',
+    value: '56',
+    icon: 'M575.213163 570.785185a37.925926 37.925926 0 0 1-15.865679-3.476543l-537.28395-247.466667a37.925926 37.925926 0 0 1 0-68.898765l537.28395-247.466667a37.925926 37.925926 0 0 1 31.604939 0l537.28395 247.466667a37.925926 37.925926 0 0 1 0 68.898765l-537.28395 247.466667a37.925926 37.925926 0 0 1-15.73926 3.476543zM128.572176 285.392593L575.213163 491.077531l446.640988-205.684938L575.213163 79.707654zM1093.534151 705.548642l-518.320988 238.743704-518.320987-238.743704v83.500247l502.455308 231.474568a37.925926 37.925926 0 0 0 31.604939 0L1093.534151 789.048889z M1093.534151 478.688395l-518.320988 238.806914L56.892176 478.688395V562.567901l502.455308 231.411358a37.925926 37.925926 0 0 0 31.604939 0L1093.534151 562.567901z',
     trend: '+28',
     trendClass: 'trend-up',
     progress: 72,
-    gradient: 'linear-gradient(135deg, #8B5CF6, #A78BFA)'
+    color: '#8B5CF6'
   },
   {
     id: 3,
     label: '代码练习',
-    value: '1.2k',
-    icon: 'M16 4v12l5-5M4 4l5 5-5 5M12 4v12',
+    value: '102k',
+    icon: 'M321.828571 226.742857c-14.628571-14.628571-36.571429-14.628571-51.2 0L7.314286 482.742857c-14.628571 14.628571-14.628571 36.571429 0 51.2l256 256c14.628571 14.628571 36.571429 14.628571 51.2 0 14.628571-14.628571 14.628571-36.571429 0-51.2L87.771429 512l234.057142-234.057143c7.314286-14.628571 7.314286-36.571429 0-51.2z m263.314286 0c-14.628571 0-36.571429 7.314286-43.885714 29.257143l-131.657143 497.371429c-7.314286 21.942857 7.314286 36.571429 29.257143 43.885714s36.571429-7.314286 43.885714-29.257143l131.657143-497.371429c7.314286-14.628571-7.314286-36.571429-29.257143-43.885714z m431.542857 256l-256-256c-14.628571-14.628571-36.571429-14.628571-51.2 0-14.628571 14.628571-14.628571 36.571429 0 51.2L936.228571 512l-234.057142 234.057143c-14.628571 14.628571-14.628571 36.571429 0 51.2 14.628571 14.628571 36.571429 14.628571 51.2 0l256-256c14.628571-14.628571 14.628571-43.885714 7.314285-58.514286z',
     trend: '+156',
     trendClass: 'trend-up',
     progress: 68,
-    gradient: 'linear-gradient(135deg, #10B981, #34D399)'
+    color: '#10B981'
   },
   {
     id: 4,
     label: '项目完成',
-    value: '12',
-    icon: 'M22 11.08V12a10 10 0 1 1-5.93-9.14',
+    value: '6+',
+    icon: 'M951.9 323.4c-6.8-7.2-16.5-11.4-26.4-11.4h-56.6v-69.8c0-24.4-19.9-44.3-44.3-44.3H562.8l-18.7-59.5-0.6-1.4c-6.9-16.6-22.9-27.3-40.9-27.3H198.7c-24.4 0-44.3 19.9-44.3 44.3v158H100c-10 0-19.6 4.2-26.4 11.4-6.8 7.2-10.4 17.1-9.8 27.1l30.8 523.8c1.1 19.2 17.1 34.2 36.3 34.2H896c19.2 0 35.2-15.1 36.3-34.3L962 350.4c0.4-10-3.2-19.8-10.1-27zM224.4 179.6h259.3l18.7 59.5 0.6 1.4c6.9 16.6 22.9 27.3 40.9 27.3h255V312H224.4V179.6z m639.7 658.8H162.5L135.7 382h754.2l-25.8 456.4z M353.8 537.3h312.1c19.3 0 35-15.7 35-35s-15.7-35-35-35H353.8c-19.3 0-35 15.7-35 35s15.7 35 35 35z',
     trend: '+3',
     trendClass: 'trend-up',
     progress: 90,
-    gradient: 'linear-gradient(135deg, #EC4899, #F472B6)'
+    color: '#EC4899'
   }
 ])
 
-// Tech Stack Display - Only 4 items with SVG icons
+// Tech Stack Display - Updated with SVG icons from files
 const techStackDisplay = ref([
   {
     name: 'Vue.js',
     level: '精通',
     color: '#42b883',
-    svgIcon: 'M2 2l10 18L22 2H2z'
+    svgIcon: 'M951.9 323.4c-6.8-7.2-16.5-11.4-26.4-11.4h-56.6v-69.8c0-24.4-19.9-44.3-44.3-44.3H562.8l-18.7-59.5-0.6-1.4c-6.9-16.6-22.9-27.3-40.9-27.3H198.7c-24.4 0-44.3 19.9-44.3 44.3v158H100c-10 0-19.6 4.2-26.4 11.4-6.8 7.2-10.4 17.1-9.8 27.1l30.8 523.8c1.1 19.2 17.1 34.2 36.3 34.2H896c19.2 0 35.2-15.1 36.3-34.3L962 350.4c0.4-10-3.2-19.8-10.1-27zM224.4 179.6h259.3l18.7 59.5 0.6 1.4c6.9 16.6 22.9 27.3 40.9 27.3h255V312H224.4V179.6z m639.7 658.8H162.5L135.7 382h754.2l-25.8 456.4z M353.8 537.3h312.1c19.3 0 35-15.7 35-35s-15.7-35-35-35H353.8c-19.3 0-35 15.7-35 35s15.7 35 35 35z'
   },
   {
     name: 'Node.js',
     level: '掌握',
     color: '#68a063',
-    svgIcon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'
+    svgIcon: 'M512 1024c-14.4 0-27.2-3.2-40-11.2l-124.8-73.6c-19.2-11.2-9.6-14.4-3.2-16 25.6-8 30.4-11.2 56-25.6 3.2-1.6 6.4-1.6 9.6 1.6l96 57.6c3.2 1.6 8 1.6 11.2 0l376-216c3.2-1.6 6.4-6.4 6.4-9.6V294.4c0-4.8-1.6-8-6.4-9.6L516.8 68.8c-3.2-1.6-8-1.6-11.2 0L131.2 284.8c-3.2 1.6-6.4 6.4-6.4 9.6v433.6c0 4.8 1.6 8 6.4 9.6l102.4 59.2c56 27.2 89.6-4.8 89.6-38.4V332.8c0-6.4 4.8-11.2 11.2-11.2h48c6.4 0 11.2 4.8 11.2 11.2v427.2c0 73.6-40 116.8-110.4 116.8-22.4 0-38.4 0-86.4-24l-97.6-56c-24-14.4-40-40-40-68.8V294.4c0-28.8 14.4-54.4 40-68.8L472 9.6C496-3.2 528-3.2 550.4 9.6l376 217.6c24 14.4 40 40 40 68.8v433.6c0 28.8-14.4 54.4-40 68.8L552 1012.8c-12.8 8-25.6 11.2-40 11.2z m302.4-427.2c0-81.6-54.4-102.4-169.6-118.4-116.8-16-128-24-128-51.2 0-22.4 9.6-52.8 96-52.8 76.8 0 105.6 16 116.8 68.8 1.6 4.8 4.8 8 11.2 8h48c3.2 0 6.4-1.6 8-3.2 1.6-1.6 3.2-4.8 3.2-8-8-89.6-67.2-131.2-187.2-131.2-107.2 0-171.2 44.8-171.2 121.6 0 81.6 64 105.6 166.4 115.2 123.2 11.2 132.8 30.4 132.8 54.4 0 41.6-33.6 59.2-112 59.2-99.2 0-121.6-25.6-128-73.6-1.6-4.8-4.8-9.6-11.2-9.6h-48c-6.4 0-11.2 4.8-11.2 11.2 0 62.4 33.6 139.2 198.4 139.2 118.4 0 185.6-48 185.6-129.6z'
   },
   {
     name: 'Vite',
     level: '精通',
     color: '#646cff',
-    svgIcon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z'
+    svgIcon: 'M363.733333 197.546667l-218.965333-39.04a49.92 49.92 0 0 0-49.664 19.968c-10.88 14.976-13.781333 35.797333-2.986667 54.613333l379.776 664.746667a50.432 50.432 0 0 0 87.765334-0.341334l372.437333-664.661333c20.906667-37.333333-11.178667-81.792-52.992-74.197333l-195.157333 34.688-8.789334 32.170666 209.322667-37.162666a20.224 20.224 0 0 1 21.248 29.738666L533.333333 882.730667a20.138667 20.138667 0 0 1-21.333333 9.984 19.968 19.968 0 0 1-13.909333-9.856L118.272 218.112a20.224 20.224 0 0 1 21.162667-29.866667l219.008 39.082667 3.157333 0.554667 2.133333-30.293334z M663.424 100.992l-260.266667 53.76a9.514667 9.514667 0 0 0-5.376 3.285333 10.538667 10.538667 0 0 0-2.346666 6.058667l-16 285.226667a10.325333 10.325333 0 0 0 3.370666 8.277333 9.088 9.088 0 0 0 8.32 2.133333l72.448-17.664c6.826667-1.621333 12.885333 4.693333 11.52 11.861334l-21.546666 111.189333c-1.450667 7.509333 5.205333 13.909333 12.16 11.690667l44.757333-14.336c6.912-2.218667 13.610667 4.181333 12.117333 11.690666l-34.176 174.634667c-2.133333 10.965333 11.605333 16.896 17.365334 7.552l3.84-6.272 212.053333-446.464c3.584-7.466667-2.56-16-10.325333-14.421333l-74.581334 15.189333c-7.04 1.450667-12.970667-5.461333-11.008-12.672l48.64-178.048c2.005333-7.253333-3.968-14.122667-10.965333-12.672z'
   },
   {
     name: 'Git',
     level: '精通',
     color: '#f05032',
-    svgIcon: 'M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.51 11.51 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z'
+    svgIcon: 'M110.933333 451.84L357.546667 204.8l72.106666 72.533333c-10.24 36.266667 6.4 75.946667 39.68 95.146667v236.373333c-25.6 14.506667-42.666667 42.24-42.666666 73.813334a85.333333 85.333333 0 0 0 85.333333 85.333333 85.333333 85.333333 0 0 0 85.333333-85.333333c0-31.573333-17.066667-59.306667-42.666666-73.813334V401.493333l88.32 89.173334c-2.986667 6.4-2.986667 13.653333-2.986667 21.333333a85.333333 85.333333 0 0 0 85.333333 85.333333 85.333333 85.333333 0 0 0 85.333334-85.333333 85.333333 85.333333 0 0 0-85.333334-85.333333c-7.68 0-14.933333 0-21.333333 2.986666L594.346667 320a84.48 84.48 0 0 0-49.066667-99.84c-18.346667-6.826667-37.546667-8.533333-54.613333-3.84L418.133333 144.213333l33.706667-33.28c33.28-33.706667 87.04-33.706667 120.32 0l340.906667 340.906667c33.706667 33.28 33.706667 87.04 0 120.32l-340.906667 340.906667c-33.28 33.706667-87.04 33.706667-120.32 0L110.933333 572.16c-33.706667-33.28-33.706667-87.04 0-120.32z'
   }
 ])
 
@@ -533,6 +535,14 @@ const achievements = ref([
 const mousePos = ref({ x: 0, y: 0 })
 
 const updateMousePos = (event: MouseEvent, cardRef: HTMLElement) => {
+  const rect = cardRef.getBoundingClientRect()
+  const x = ((event.clientX - rect.left) / rect.width) * 100
+  const y = ((event.clientY - rect.top) / rect.height) * 100
+  cardRef.style.setProperty('--mouse-x', `${x}%`)
+  cardRef.style.setProperty('--mouse-y', `${y}%`)
+}
+
+const updateCardMousePos = (event: MouseEvent, cardRef: HTMLElement) => {
   const rect = cardRef.getBoundingClientRect()
   const x = ((event.clientX - rect.left) / rect.width) * 100
   const y = ((event.clientY - rect.top) / rect.height) * 100
@@ -991,7 +1001,7 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   gap: 40px;
   max-width: 1400px;
   width: 100%;
-  height: 400px;
+  height: 450px;
   margin-top: 100px;
 }
 
@@ -1189,6 +1199,7 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   position: relative;
   z-index: 1;
   padding: 20px 24px 30px;
+  perspective: 1000px;
 }
 
 .data-tech-row {
@@ -1198,6 +1209,54 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   gap: 14px;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* 初始动画 - 卡片依次飞入 */
+.data-card-unified,
+.tech-card-unified {
+  opacity: 0;
+  transform: translateY(40px) rotateX(-10deg);
+  animation: cardFlyIn 0.6s var(--ease-out-expo) forwards;
+}
+
+@keyframes cardFlyIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+/* 依次延迟显示动画 */
+.data-cards-row .data-card-unified:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.data-cards-row .data-card-unified:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.data-cards-row .data-card-unified:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.data-cards-row .data-card-unified:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.tech-cards-row .tech-card-unified:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.tech-cards-row .tech-card-unified:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.tech-cards-row .tech-card-unified:nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+.tech-cards-row .tech-card-unified:nth-child(4) {
+  animation-delay: 0.8s;
 }
 
 .data-cards-row,
@@ -1211,60 +1270,136 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
 /* Unified Data Card */
 .data-card-unified {
   position: relative;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 14px;
   cursor: pointer;
-  transition: all 0.3s var(--ease-out-expo);
+  transition: all 0.4s var(--ease-out-expo);
   overflow: hidden;
   aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .data-card-unified::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 60%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.data-card-unified::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg,
+      var(--card-color, #F59E0B),
+      transparent 40%,
+      var(--card-color, #F59E0B));
+  border-radius: 18px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(8px);
 }
 
 .data-card-unified:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.02);
   box-shadow:
-    0 10px 35px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px var(--card-color, rgba(245, 158, 11, 0.3)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .data-card-unified:hover::before {
   opacity: 1;
 }
 
+.data-card-unified:hover::after {
+  opacity: 0.8;
+  animation: borderPulse 2s ease-in-out infinite;
+}
+
 .card-icon {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   border-radius: 16px;
-  background: var(--card-gradient, linear-gradient(135deg, #F59E0B, #FBBF24));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 2px solid var(--card-color, #F59E0B);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+  transition: all 0.4s var(--ease-out-expo);
+  z-index: 1;
+}
+
+.card-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--card-color, #F59E0B);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.data-card-unified:hover .card-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow:
+    0 8px 25px var(--card-color, rgba(245, 158, 11, 0.4)),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  border-color: transparent;
+}
+
+.data-card-unified:hover .card-icon::before {
+  opacity: 0.15;
 }
 
 .card-icon svg {
-  width: 26px;
-  height: 26px;
-  color: #0F172A;
+  width: 28px;
+  height: 28px;
+  color: var(--card-color, #F59E0B);
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  transition: all 0.4s var(--ease-out-expo);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.data-card-unified:hover .card-icon svg {
+  color: #fff;
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+/* 脉冲动画效果 */
+@keyframes borderPulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    filter: blur(8px);
+  }
+
+  50% {
+    opacity: 1;
+    filter: blur(12px);
+  }
 }
 
 .card-content {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
 }
 
 .card-value {
@@ -1272,25 +1407,51 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   font-weight: 700;
   color: var(--color-text-primary);
   line-height: 1;
+  background: linear-gradient(135deg, var(--color-text-primary), var(--card-color, #F59E0B));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.data-card-unified:hover .card-value {
+  transform: scale(1.05);
+  filter: brightness(1.2);
 }
 
 .card-label {
   font-size: 13px;
   color: var(--color-text-secondary);
+  font-weight: 500;
 }
 
 .card-trend {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   font-size: 12px;
   font-weight: 600;
-  color: #10B981;
+  color: var(--card-color, #10B981);
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.data-card-unified:hover .card-trend {
+  background: var(--card-color, rgba(16, 185, 129, 0.2));
+  transform: translateX(4px);
 }
 
 .card-trend svg {
   width: 16px;
   height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.data-card-unified:hover .card-trend svg {
+  transform: translateY(-2px);
 }
 
 .card-progress {
@@ -1301,13 +1462,15 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   height: 4px;
   background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
+  border-radius: 0 0 16px 16px;
 }
 
 .progress-fill {
   height: 100%;
-  background: var(--card-gradient, linear-gradient(135deg, #F59E0B, #FBBF24));
+  background: var(--card-color, #F59E0B);
   transition: width 1s var(--ease-out-expo);
   position: relative;
+  box-shadow: 0 0 10px var(--card-color, rgba(245, 158, 11, 0.5));
 }
 
 .progress-fill::after {
@@ -1327,75 +1490,152 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 14px;
   cursor: pointer;
-  transition: all 0.3s var(--ease-out-expo);
+  transition: all 0.4s var(--ease-out-expo);
   overflow: hidden;
   aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .tech-card-unified::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--tech-color, #42b883);
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 60%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tech-card-unified::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg,
+      var(--tech-color, #42b883),
+      transparent 40%,
+      var(--tech-color, #42b883));
+  border-radius: 18px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(8px);
 }
 
 .tech-card-unified:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.02);
   box-shadow:
-    0 10px 35px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px var(--tech-color, rgba(66, 184, 131, 0.3)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .tech-card-unified:hover::before {
-  opacity: 0.1;
+  opacity: 1;
+}
+
+.tech-card-unified:hover::after {
+  opacity: 0.8;
+  animation: borderPulse 2s ease-in-out infinite;
 }
 
 .tech-card-icon {
   width: 56px;
   height: 56px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
   border: 2px solid var(--tech-color, #42b883);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out-expo);
   z-index: 1;
+}
+
+.tech-card-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--tech-color, #42b883);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.tech-card-unified:hover .tech-card-icon {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow:
+    0 8px 25px var(--tech-color, rgba(66, 184, 131, 0.4)),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  border-color: transparent;
+}
+
+.tech-card-unified:hover .tech-card-icon::before {
+  opacity: 0.15;
 }
 
 .tech-card-icon svg {
   width: 32px;
   height: 32px;
   color: var(--tech-color, #42b883);
+  position: relative;
+  z-index: 2;
+  transition: all 0.4s var(--ease-out-expo);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.tech-card-unified:hover .tech-card-icon svg {
+  color: #fff;
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
 }
 
 .tech-card-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   position: relative;
   z-index: 1;
 }
 
 .tech-card-name {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   color: var(--color-text-primary);
+  background: linear-gradient(135deg, var(--color-text-primary), var(--tech-color, #42b883));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.tech-card-unified:hover .tech-card-name {
+  transform: scale(1.05);
+  filter: brightness(1.2);
 }
 
 .tech-card-level {
   font-size: 12px;
-  padding: 4px 12px;
+  padding: 6px 14px;
   border-radius: 100px;
   background: rgba(255, 255, 255, 0.05);
   color: var(--tech-color, #42b883);
-  font-weight: 500;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.tech-card-unified:hover .tech-card-level {
+  background: var(--tech-color, rgba(66, 184, 131, 0.2));
+  border-color: var(--tech-color, #42b883);
+  transform: scale(1.05);
 }
 
 .stat-card {

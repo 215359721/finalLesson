@@ -35,3 +35,13 @@ https://s1-imfile.feishucdn.com/static-resource/v1/v3_00iv_48fbdee8-2731-4c02-b3
 ### 个人简介
 资深前端技术经理，拥有8年以上大型互联网项目实战经验，主导过多个亿级用户产品的前端架构设计与团队建设。擅长高性能前端体系搭建、工程化落地及跨端技术整合，兼具技术深度与管理视野。始终以用户体验为核心，用代码驱动产品进化，带领团队高效交付、持续创新，在复杂业务场景中不断突破技术边界。
 
+### 图标
+学习时长（UI/time.svg）
+笔记数量（UI/sum.svg）
+代码练习（UI/code.svg）
+项目完成（UI/project.svg）
+Vue.js（UI/vue.svg）
+Node.js（UI/nodejs.svg）
+Vite（UI/vite.svg）
+Git（UI/git.svg）
+
