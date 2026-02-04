@@ -163,17 +163,26 @@
 
         <!-- Tech Stack Cards - Right 4 cards -->
         <div class="tech-cards-row">
-          <div v-for="(tech, index) in techStackDisplay" :key="tech.name" class="tech-card-unified glass"
-            :style="{ '--tech-color': tech.color, 'transition-delay': `${(index + 4) * 0.05}s` }"
+          <div v-for="(tech, index) in techStackDisplay" :key="tech.name" class="data-card-unified glass"
+            :style="{ '--card-color': tech.color, 'transition-delay': `${(index + 4) * 0.05}s` }"
             @mousemove="(e) => updateCardMousePos(e, $el.currentTarget)">
-            <div class="tech-card-icon">
+            <div class="card-icon">
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path v-html="tech.svgIcon" />
               </svg>
             </div>
-            <div class="tech-card-content">
-              <div class="tech-card-name">{{ tech.name }}</div>
-              <div class="tech-card-level">{{ tech.level }}</div>
+            <div class="card-content">
+              <div class="card-value">{{ tech.name }}</div>
+              <div class="card-label">{{ tech.level }}</div>
+              <div class="card-trend">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span>{{ tech.num }}</span>
+              </div>
+            </div>
+            <div class="card-progress">
+              <div class="progress-fill" :style="{ width: '90%' }"></div>
             </div>
           </div>
         </div>
@@ -470,26 +479,30 @@ const learningDataCards = ref([
 // Tech Stack Display - Updated with SVG icons from files
 const techStackDisplay = ref([
   {
-    name: 'Vue.js',
-    level: '精通',
+    name: 'Vue',
+    level: '熟悉',
+    num: '120+',
     color: '#42b883',
     svgIcon: 'M951.9 323.4c-6.8-7.2-16.5-11.4-26.4-11.4h-56.6v-69.8c0-24.4-19.9-44.3-44.3-44.3H562.8l-18.7-59.5-0.6-1.4c-6.9-16.6-22.9-27.3-40.9-27.3H198.7c-24.4 0-44.3 19.9-44.3 44.3v158H100c-10 0-19.6 4.2-26.4 11.4-6.8 7.2-10.4 17.1-9.8 27.1l30.8 523.8c1.1 19.2 17.1 34.2 36.3 34.2H896c19.2 0 35.2-15.1 36.3-34.3L962 350.4c0.4-10-3.2-19.8-10.1-27zM224.4 179.6h259.3l18.7 59.5 0.6 1.4c6.9 16.6 22.9 27.3 40.9 27.3h255V312H224.4V179.6z m639.7 658.8H162.5L135.7 382h754.2l-25.8 456.4z M353.8 537.3h312.1c19.3 0 35-15.7 35-35s-15.7-35-35-35H353.8c-19.3 0-35 15.7-35 35s15.7 35 35 35z'
   },
   {
-    name: 'Node.js',
-    level: '掌握',
+    name: 'Node',
+    level: '熟悉',
+    num: '290+',
     color: '#68a063',
     svgIcon: 'M512 1024c-14.4 0-27.2-3.2-40-11.2l-124.8-73.6c-19.2-11.2-9.6-14.4-3.2-16 25.6-8 30.4-11.2 56-25.6 3.2-1.6 6.4-1.6 9.6 1.6l96 57.6c3.2 1.6 8 1.6 11.2 0l376-216c3.2-1.6 6.4-6.4 6.4-9.6V294.4c0-4.8-1.6-8-6.4-9.6L516.8 68.8c-3.2-1.6-8-1.6-11.2 0L131.2 284.8c-3.2 1.6-6.4 6.4-6.4 9.6v433.6c0 4.8 1.6 8 6.4 9.6l102.4 59.2c56 27.2 89.6-4.8 89.6-38.4V332.8c0-6.4 4.8-11.2 11.2-11.2h48c6.4 0 11.2 4.8 11.2 11.2v427.2c0 73.6-40 116.8-110.4 116.8-22.4 0-38.4 0-86.4-24l-97.6-56c-24-14.4-40-40-40-68.8V294.4c0-28.8 14.4-54.4 40-68.8L472 9.6C496-3.2 528-3.2 550.4 9.6l376 217.6c24 14.4 40 40 40 68.8v433.6c0 28.8-14.4 54.4-40 68.8L552 1012.8c-12.8 8-25.6 11.2-40 11.2z m302.4-427.2c0-81.6-54.4-102.4-169.6-118.4-116.8-16-128-24-128-51.2 0-22.4 9.6-52.8 96-52.8 76.8 0 105.6 16 116.8 68.8 1.6 4.8 4.8 8 11.2 8h48c3.2 0 6.4-1.6 8-3.2 1.6-1.6 3.2-4.8 3.2-8-8-89.6-67.2-131.2-187.2-131.2-107.2 0-171.2 44.8-171.2 121.6 0 81.6 64 105.6 166.4 115.2 123.2 11.2 132.8 30.4 132.8 54.4 0 41.6-33.6 59.2-112 59.2-99.2 0-121.6-25.6-128-73.6-1.6-4.8-4.8-9.6-11.2-9.6h-48c-6.4 0-11.2 4.8-11.2 11.2 0 62.4 33.6 139.2 198.4 139.2 118.4 0 185.6-48 185.6-129.6z'
   },
   {
     name: 'Vite',
-    level: '精通',
+    level: '熟悉',
+    num: '15+',
     color: '#646cff',
     svgIcon: 'M363.733333 197.546667l-218.965333-39.04a49.92 49.92 0 0 0-49.664 19.968c-10.88 14.976-13.781333 35.797333-2.986667 54.613333l379.776 664.746667a50.432 50.432 0 0 0 87.765334-0.341334l372.437333-664.661333c20.906667-37.333333-11.178667-81.792-52.992-74.197333l-195.157333 34.688-8.789334 32.170666 209.322667-37.162666a20.224 20.224 0 0 1 21.248 29.738666L533.333333 882.730667a20.138667 20.138667 0 0 1-21.333333 9.984 19.968 19.968 0 0 1-13.909333-9.856L118.272 218.112a20.224 20.224 0 0 1 21.162667-29.866667l219.008 39.082667 3.157333 0.554667 2.133333-30.293334z M663.424 100.992l-260.266667 53.76a9.514667 9.514667 0 0 0-5.376 3.285333 10.538667 10.538667 0 0 0-2.346666 6.058667l-16 285.226667a10.325333 10.325333 0 0 0 3.370666 8.277333 9.088 9.088 0 0 0 8.32 2.133333l72.448-17.664c6.826667-1.621333 12.885333 4.693333 11.52 11.861334l-21.546666 111.189333c-1.450667 7.509333 5.205333 13.909333 12.16 11.690667l44.757333-14.336c6.912-2.218667 13.610667 4.181333 12.117333 11.690666l-34.176 174.634667c-2.133333 10.965333 11.605333 16.896 17.365334 7.552l3.84-6.272 212.053333-446.464c3.584-7.466667-2.56-16-10.325333-14.421333l-74.581334 15.189333c-7.04 1.450667-12.970667-5.461333-11.008-12.672l48.64-178.048c2.005333-7.253333-3.968-14.122667-10.965333-12.672z'
   },
   {
     name: 'Git',
-    level: '精通',
+    level: '熟悉',
+    num: '180+',
     color: '#f05032',
     svgIcon: 'M110.933333 451.84L357.546667 204.8l72.106666 72.533333c-10.24 36.266667 6.4 75.946667 39.68 95.146667v236.373333c-25.6 14.506667-42.666667 42.24-42.666666 73.813334a85.333333 85.333333 0 0 0 85.333333 85.333333 85.333333 85.333333 0 0 0 85.333333-85.333333c0-31.573333-17.066667-59.306667-42.666666-73.813334V401.493333l88.32 89.173334c-2.986667 6.4-2.986667 13.653333-2.986667 21.333333a85.333333 85.333333 0 0 0 85.333333 85.333333 85.333333 85.333333 0 0 0 85.333334-85.333333 85.333333 85.333333 0 0 0-85.333334-85.333333c-7.68 0-14.933333 0-21.333333 2.986666L594.346667 320a84.48 84.48 0 0 0-49.066667-99.84c-18.346667-6.826667-37.546667-8.533333-54.613333-3.84L418.133333 144.213333l33.706667-33.28c33.28-33.706667 87.04-33.706667 120.32 0l340.906667 340.906667c33.706667 33.28 33.706667 87.04 0 120.32l-340.906667 340.906667c-33.28 33.706667-87.04 33.706667-120.32 0L110.933333 572.16c-33.706667-33.28-33.706667-87.04 0-120.32z'
   }
@@ -1233,19 +1246,19 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
   animation-delay: 0.4s;
 }
 
-.tech-cards-row .tech-card-unified:nth-child(1) {
+.tech-cards-row .data-card-unified:nth-child(1) {
   animation-delay: 0.5s;
 }
 
-.tech-cards-row .tech-card-unified:nth-child(2) {
+.tech-cards-row .data-card-unified:nth-child(2) {
   animation-delay: 0.6s;
 }
 
-.tech-cards-row .tech-card-unified:nth-child(3) {
+.tech-cards-row .data-card-unified:nth-child(3) {
   animation-delay: 0.7s;
 }
 
-.tech-cards-row .tech-card-unified:nth-child(4) {
+.tech-cards-row .data-card-unified:nth-child(4) {
   animation-delay: 0.8s;
 }
 
@@ -1260,9 +1273,11 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
 /* Unified Data Card */
 .data-card-unified {
   position: relative;
-  padding: 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 14px;
   cursor: pointer;
   transition: all 0.4s var(--ease-out-expo);
@@ -1387,6 +1402,7 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
 .card-content {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
   position: relative;
   z-index: 1;
@@ -1472,160 +1488,6 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
       rgba(255, 255, 255, 0.3),
       transparent);
   animation: progressShine 2s linear infinite;
-}
-
-/* Unified Tech Card */
-.tech-card-unified {
-  position: relative;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  cursor: pointer;
-  transition: all 0.4s var(--ease-out-expo);
-  overflow: hidden;
-  aspect-ratio: 1;
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.tech-card-unified::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      rgba(255, 255, 255, 0.15) 0%,
-      transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.tech-card-unified::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg,
-      var(--tech-color, #42b883),
-      transparent 40%,
-      var(--tech-color, #42b883));
-  border-radius: 18px;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
-  filter: blur(8px);
-}
-
-.tech-card-unified:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.4),
-    0 0 30px var(--tech-color, rgba(66, 184, 131, 0.3)),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.tech-card-unified:hover::before {
-  opacity: 1;
-}
-
-.tech-card-unified:hover::after {
-  opacity: 0.8;
-  animation: borderPulse 2s ease-in-out infinite;
-}
-
-.tech-card-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-  border: 2px solid var(--tech-color, #42b883);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s var(--ease-out-expo);
-  z-index: 1;
-}
-
-.tech-card-icon::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--tech-color, #42b883);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.tech-card-unified:hover .tech-card-icon {
-  transform: scale(1.1) rotate(-5deg);
-  box-shadow:
-    0 8px 25px var(--tech-color, rgba(66, 184, 131, 0.4)),
-    inset 0 0 20px rgba(255, 255, 255, 0.1);
-  border-color: transparent;
-}
-
-.tech-card-unified:hover .tech-card-icon::before {
-  opacity: 0.15;
-}
-
-.tech-card-icon svg {
-  width: 32px;
-  height: 32px;
-  color: var(--tech-color, #42b883);
-  position: relative;
-  z-index: 2;
-  transition: all 0.4s var(--ease-out-expo);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-}
-
-.tech-card-unified:hover .tech-card-icon svg {
-  color: #fff;
-  transform: scale(1.1);
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
-}
-
-.tech-card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  position: relative;
-  z-index: 1;
-}
-
-.tech-card-name {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--color-text-primary);
-  background: linear-gradient(135deg, var(--color-text-primary), var(--tech-color, #42b883));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: all 0.4s var(--ease-out-expo);
-}
-
-.tech-card-unified:hover .tech-card-name {
-  transform: scale(1.05);
-  filter: brightness(1.2);
-}
-
-.tech-card-level {
-  font-size: 12px;
-  padding: 6px 14px;
-  border-radius: 100px;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--tech-color, #42b883);
-  font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
-
-.tech-card-unified:hover .tech-card-level {
-  background: var(--tech-color, rgba(66, 184, 131, 0.2));
-  border-color: var(--tech-color, #42b883);
-  transform: scale(1.05);
 }
 
 .stat-card {
@@ -2711,19 +2573,16 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
     min-width: 0;
   }
 
-  .data-card-unified,
-  .tech-card-unified {
+  .data-card-unified {
     padding: 16px;
   }
 
-  .card-icon,
-  .tech-card-icon {
+  .card-icon {
     width: 44px;
     height: 44px;
   }
 
-  .card-icon svg,
-  .tech-card-icon svg {
+  .card-icon svg {
     width: 22px;
     height: 22px;
   }
@@ -2732,14 +2591,8 @@ const smallProjects = computed(() => allProjects.value.filter(p => p.id !== 5))
     font-size: 24px;
   }
 
-  .card-label,
-  .tech-card-name {
+  .card-label {
     font-size: 12px;
-  }
-
-  .tech-card-level {
-    font-size: 11px;
-    padding: 3px 10px;
   }
 
   .card-trend {
