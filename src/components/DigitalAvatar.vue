@@ -6,8 +6,8 @@
         <div class="avatar-info">
           <div class="avatar-avatar">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="8" r="4"/>
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="8" r="4" />
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
             </svg>
           </div>
           <div class="avatar-details">
@@ -18,13 +18,13 @@
         <div class="avatar-actions">
           <button class="icon-btn" title="新对话" @click="showClearConfirm = true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="12" y1="5" x2="12" y2="19"/>
-              <line x1="5" y1="12" x2="19" y2="12"/>
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
             </svg>
           </button>
           <button class="icon-btn" title="全屏对话" @click="isDrawerOpen = true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
             </svg>
           </button>
         </div>
@@ -33,9 +33,9 @@
       <!-- Error Alert -->
       <div v-if="error" class="error-alert">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10"/>
-          <line x1="12" y1="8" x2="12" y2="12"/>
-          <line x1="12" y1="16" x2="12.01" y2="16"/>
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
         </svg>
         <span>{{ error }}</span>
       </div>
@@ -46,27 +46,23 @@
         <div v-if="messages.length === 0" class="message assistant">
           <div class="message-avatar">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="8" r="4"/>
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="8" r="4" />
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
             </svg>
           </div>
           <div class="message-content">
             <div class="message-text">
-              你好！我是AI助手，可以帮你了解更多关于我的信息。
+              你好！我是Ethna_Ma的AI助手，可以帮你了解更多关于所学课程及项目的信息。
             </div>
           </div>
         </div>
 
         <!-- Chat Messages -->
-        <div
-          v-for="msg in messages"
-          :key="msg.id"
-          :class="['message', msg.role]"
-        >
+        <div v-for="msg in messages" :key="msg.id" :class="['message', msg.role]">
           <div v-if="msg.role === 'assistant'" class="message-avatar">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="8" r="4"/>
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="8" r="4" />
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
             </svg>
           </div>
           <div class="message-content">
@@ -75,8 +71,8 @@
           </div>
           <div v-if="msg.role === 'user'" class="message-avatar user">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="8" r="4"/>
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="8" r="4" />
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
             </svg>
           </div>
         </div>
@@ -85,8 +81,8 @@
         <div v-if="isTyping" class="message assistant">
           <div class="message-avatar">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="8" r="4"/>
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="8" r="4" />
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
             </svg>
           </div>
           <div class="message-content">
@@ -103,32 +99,17 @@
       <div class="avatar-input">
         <!-- Quick Suggestions -->
         <div class="input-suggestions">
-          <button
-            v-for="suggestion in suggestions"
-            :key="suggestion"
-            class="suggestion-chip-small"
-            @click="handleSend(suggestion)"
-            :disabled="isTyping"
-          >
+          <button v-for="suggestion in suggestions" :key="suggestion" class="suggestion-chip-small"
+            @click="handleSend(suggestion)" :disabled="isTyping">
             {{ suggestion }}
           </button>
         </div>
         <div class="input-wrapper">
-          <textarea
-            v-model="inputMessage"
-            placeholder="输入你的问题..."
-            rows="1"
-            @keydown.enter.prevent="handleEnterKey"
-            :disabled="isTyping"
-            ref="textareaRef"
-          ></textarea>
-          <button
-            class="send-btn"
-            @click="handleSend()"
-            :disabled="!inputMessage.trim() || isTyping"
-          >
+          <textarea v-model="inputMessage" placeholder="输入你的问题..." rows="1" @keydown.enter.prevent="handleEnterKey"
+            :disabled="isTyping" ref="textareaRef"></textarea>
+          <button class="send-btn" @click="handleSend()" :disabled="!inputMessage.trim() || isTyping">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
             </svg>
           </button>
         </div>
@@ -145,8 +126,8 @@
               <div class="avatar-info">
                 <div class="avatar-avatar">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <circle cx="12" cy="8" r="4"/>
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                   </svg>
                 </div>
                 <div class="avatar-details">
@@ -157,14 +138,14 @@
               <div class="avatar-actions">
                 <button class="icon-btn" title="新对话" @click="showClearConfirm = true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="12" y1="5" x2="12" y2="19"/>
-                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
                   </svg>
                 </button>
                 <button class="icon-btn" title="关闭" @click="isDrawerOpen = false">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"/>
-                    <line x1="6" y1="6" x2="18" y2="18"/>
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
                   </svg>
                 </button>
               </div>
@@ -173,9 +154,9 @@
             <!-- Error Alert -->
             <div v-if="error" class="error-alert">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="12" y1="8" x2="12" y2="12"/>
-                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
               </svg>
               <span>{{ error }}</span>
             </div>
@@ -186,27 +167,23 @@
               <div v-if="messages.length === 0" class="message assistant">
                 <div class="message-avatar">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <circle cx="12" cy="8" r="4"/>
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                   </svg>
                 </div>
                 <div class="message-content">
                   <div class="message-text">
-                    你好！我是AI助手，可以帮你了解更多关于我的信息。
+                    你好！我是Ethna_Ma的AI助手，可以帮你了解更多关于所学课程及项目的信息。
                   </div>
                 </div>
               </div>
 
               <!-- Chat Messages -->
-              <div
-                v-for="msg in messages"
-                :key="msg.id"
-                :class="['message', msg.role]"
-              >
+              <div v-for="msg in messages" :key="msg.id" :class="['message', msg.role]">
                 <div v-if="msg.role === 'assistant'" class="message-avatar">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <circle cx="12" cy="8" r="4"/>
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                   </svg>
                 </div>
                 <div class="message-content">
@@ -215,8 +192,8 @@
                 </div>
                 <div v-if="msg.role === 'user'" class="message-avatar user">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <circle cx="12" cy="8" r="4"/>
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                   </svg>
                 </div>
               </div>
@@ -225,8 +202,8 @@
               <div v-if="isTyping" class="message assistant">
                 <div class="message-avatar">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <circle cx="12" cy="8" r="4"/>
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                   </svg>
                 </div>
                 <div class="message-content">
@@ -243,32 +220,17 @@
             <div class="avatar-input">
               <!-- Quick Suggestions -->
               <div class="input-suggestions">
-                <button
-                  v-for="suggestion in suggestions"
-                  :key="suggestion"
-                  class="suggestion-chip-small"
-                  @click="handleSend(suggestion)"
-                  :disabled="isTyping"
-                >
+                <button v-for="suggestion in suggestions" :key="suggestion" class="suggestion-chip-small"
+                  @click="handleSend(suggestion)" :disabled="isTyping">
                   {{ suggestion }}
                 </button>
               </div>
               <div class="input-wrapper">
-                <textarea
-                  v-model="inputMessage"
-                  placeholder="输入你的问题..."
-                  rows="1"
-                  @keydown.enter.prevent="handleEnterKey"
-                  :disabled="isTyping"
-                  ref="drawerTextareaRef"
-                ></textarea>
-                <button
-                  class="send-btn"
-                  @click="handleSend()"
-                  :disabled="!inputMessage.trim() || isTyping"
-                >
+                <textarea v-model="inputMessage" placeholder="输入你的问题..." rows="1"
+                  @keydown.enter.prevent="handleEnterKey" :disabled="isTyping" ref="drawerTextareaRef"></textarea>
+                <button class="send-btn" @click="handleSend()" :disabled="!inputMessage.trim() || isTyping">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
                   </svg>
                 </button>
               </div>
@@ -326,7 +288,6 @@ watch(isDrawerOpen, (isOpen) => {
 
 const suggestions = [
   '介绍一下自己',
-  '你会做什么项目？',
   '你学习了哪些课程？',
   '如何联系你？'
 ]
@@ -514,8 +475,15 @@ watch(() => messages.value, (newMessages) => {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .avatar-actions {
@@ -703,13 +671,31 @@ watch(() => messages.value, (newMessages) => {
   animation: typing 1.4s infinite ease-in-out;
 }
 
-.typing-indicator span:nth-child(1) { animation-delay: 0s; }
-.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+.typing-indicator span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 @keyframes typing {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-  30% { transform: translateY(-4px); opacity: 1; }
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
 }
 
 /* Input */
